@@ -4,7 +4,6 @@ from authy.views import UserProfile, Signup, PasswordChange, PasswordChangeDone,
 from django.contrib.auth import views as authViews 
 
 
-
 urlpatterns = [
    	
     path('profile/edit', EditProfile, name='edit-profile'),
