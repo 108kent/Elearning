@@ -31,10 +31,6 @@ class Course(models.Model):
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	syllabus = RichTextField()
 	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='course_owner')
-	enrolled = models.ManyToManyField(User)
-	modules = models.ManyToManyField(Module)
-	questions = models.ManyToManyField(Question)
-
 
 	def __str__(self):
 		return self.title
