@@ -6,12 +6,12 @@
 <div class="section no-pad-bot" id="index-banner">
 	<div class="container">
 		<br><br>
-		<h2 class="header orange-text center">Learning</h2>
-		<h5 class="header col s12 light center"> Earn your certificate, learn a new skill or degree here.</h5>
+		<h2 class="header orange-text center">学習ポータル</h2>
+		<h5 class="header col s12 light center">育て、羽ばたけ、未来のグローバル人材</h5>
 	</div>
 	<div class="row center">
 		<br>
-		<a class="btn-large orange" href="{% url 'categories' %}">Browse</a>
+		<a class="btn-large orange" href="{% url 'categories' %}">講義を探す</a>
 	</div>
 </div>
 
@@ -20,7 +20,7 @@
 
 {% block content %}
 <div class="section">
-	<h4>Active</h4>
+	<h4>受講中のレッスン</h4>
 	<div class="divider"></div>
 </div>
 
@@ -33,7 +33,7 @@
     </div>
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4">{{ course.title }}<i class="material-icons right">more_vert</i></span>
-      <p><a href="{% url 'course' course.id %}">Resume</a></p>
+      <p><a href="#">Resume</a></p>
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">About<i class="material-icons right">close</i></span>
