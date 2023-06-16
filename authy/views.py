@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from authy.forms import SignupForm, ChangePasswordForm, EditProfileForm
 from django.contrib.auth.models import User
 
+from classroom.models import Course
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.db.models import Sum
@@ -29,20 +31,51 @@ def SideNavInfo(request):
 	
 	return {'nav_profile': nav_profile}
 
+#これは新しく作ったが、反映されてくれない
 
+#def ProfileHTML(request, username):
+#	user = get_object_or_404(User, username=username)
+#	profile = Profile.objects.get(user=user)
+#	user_basic_info = User.objects.get(user=user)
+	
+#	context = {
+#	'profile': profile,
+#	"user_basic_info":user_basic_info,
+#	}
+	
+#	return render(request, 'profile.html', context)
+
+
+#def UserProfile(request, username):
+#	user = get_object_or_404(User, username=username)
+#	profile = Profile.objects.get(user=user)
+
+#	courses = Course.objects.filter(enrolled=user)
+#	template = loader.get_template('profile.html')
+#	location = profile.location
+
+#	context = {
+#		'profile':profile,
+#		'courses': courses,
+#		"location":location,
+
+#	}
+
+#	return HttpResponse(template.render(context, request))
+	
 def UserProfile(request, username):
-	user = get_object_or_404(User, username=username)
-	profile = Profile.objects.get(user=user)
+    user = get_object_or_404(User, username=username)
+    profile = Profile.objects.get(user=user)
 
+    courses = Course.objects.filter(enrolled=user)
+    location = profile.location
 
-	template = loader.get_template('profile.html')
+    context = {
+        'profile': profile,
+        'courses': courses,
+    }
 
-	context = {
-		'profile':profile,
-
-	}
-
-	return HttpResponse(template.render(context, request))
+    return render(request, 'profile.html', context)
 
 
 def Signup(request):

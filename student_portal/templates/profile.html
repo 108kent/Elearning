@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block banner %}
+
+<div class="section no-pad-bot" id="index-banner">
+	<div class="container">
+		<br><br>
+		<h2 class="header green-text center">{{ nav_profile.user.first_name }}さんのプロフィール</h2>
+    
+    <div class="row">
+    <div class="col s12 m4 offset-m4 center-align">
+    <div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      {% if nav_profile.picture %}
+      <img class="activator" src="{{ nav_profile.picture.url }}">
+      {% else %}
+      <img class="activator" src="{% static 'img/no_avatar.jpg' %}">
+      {% endif %}
+    </div>
+    </div>
+    </div>
+    </div>
+    
+	    <ul class="striped">
+      <table>
+        <thead>
+          <tr>
+              <th>　</th>
+              <th>  </th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>苗字</td>
+            <td>{{ nav_profile.user.last_name }}</td>
+
+          </tr>
+          <tr>
+            <td>名前</td>
+            <td>{{ nav_profile.user.first_name }}</td>
+
+          </tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td>{{ nav_profile.user.email }}</td>
+
+          </tr>
+        <tr>
+            <td>所在地</td>
+            <td>{{ profile.location }}</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </ul>
+  </div>
+	
+	<div class="row center">
+		<br>
+		<a class="btn-large greet" href="#">プロフィールを修正する</a>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block content %}
+<div class="section">
+	<h4>受講中のレッスン</h4>
+	<div class="divider"></div>
+</div>
+
+<div class="row">
+{% for course in courses %}
+<div class="col s12 m4">
+  <div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="{{ course.picture.url }}">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">{{ course.title }}<i class="material-icons right">more_vert</i></span>
+      <p><a href="{% url 'course' course.id %}">Resume</a></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">About<i class="material-icons right">close</i></span>
+      <p>{{ course.description }}</p>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}
