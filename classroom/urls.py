@@ -2,7 +2,7 @@ from django.urls import path
 from classroom.views import Categories, CategoryCourses, NewCourse, Enroll, DeleteCourse, EditCourse, MyCourses, CourseDetail, Submissions, StudentSubmissions, GradeSubmission
 
 from module.views import NewModule, CourseModules
-from page.views import NewPageModule, PageDetail
+from page.views import NewPageModule, PageDetail, MarkPageAsDone
 from quiz.views import NewQuiz, NewQuestion, QuizDetail, TakeQuiz, SubmitAttempt, AttemptDetail
 from assignment.views import NewAssignment, AssignmentDetail, NewSubmission
 from question.views import NewStudentQuestion, Questions, QuestionDetail, MarkAsAnswer, VoteAnswer
@@ -23,7 +23,7 @@ urlpatterns = [
 	#Pages
 	path('<course_id>/modules/<module_id>/pages/newpage', NewPageModule, name='new-page'),
 	path('<course_id>/modules/<module_id>/pages/<page_id>', PageDetail, name='page-detail'),
-	#path('<course_id>/modules/<module_id>/pages/<page_id>/done', MarkPageAsDone, name='mark-page-as-done'),
+	path('<course_id>/modules/<module_id>/pages/<page_id>/done', MarkPageAsDone, name='mark-page-as-done'),
 	#Quizzes
 	path('<course_id>/modules/<module_id>/quiz/newquiz', NewQuiz, name='new-quiz'),
 	path('<course_id>/modules/<module_id>/quiz/<quiz_id>/newquestion', NewQuestion, name='new-question'),

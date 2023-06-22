@@ -26,7 +26,7 @@
 
 {% if completed != True %}
 <div class="col s12 center-align">
-  <a class="btn-large" href="#"><i class="material-icons">done</i>Mark as done</a>
+  <a class="btn-large" href="{% url 'mark-page-as-done' course_id module_id page.id %}"><i class="material-icons">done</i>Mark as done</a>
 </div>
 {% endif %}
 

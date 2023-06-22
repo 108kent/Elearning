@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "quiz",
     "assignment",
     "question",
+    "completion",
+    "direct",
 ]
 
 MIDDLEWARE = [
@@ -75,6 +77,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'authy.views.SideNavInfo',
+                'direct.views.CheckDirects',
             ],
         },
     },

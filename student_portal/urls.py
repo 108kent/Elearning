@@ -28,6 +28,7 @@ urlpatterns = [
     path('user/', include('authy.urls')),
     path('course/', include('classroom.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('direct/', include('direct.urls')),
     path('<username>', UserProfile, name='profile'),
     path('', index, name='index')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

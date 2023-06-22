@@ -5,7 +5,7 @@ from django.http import HttpResponseForbidden
 from quiz.forms import NewQuizForm, NewQuestionForm
 from quiz.models import Answer, Question, Quizzes, Attempter, Attempt
 from module.models import Module
-#from completion.models import Completion
+from completion.models import Completion
 
 # Create your views here.
 
@@ -98,7 +98,7 @@ def SubmitAttempt(request, course_id, module_id, quiz_id):
 			question = Question.objects.get(id=q)
 			answer = Answer.objects.get(id=a)
 			Attempt.objects.create(quiz=quiz, attempter=attempter, question=question, answer=answer)
-#			Completion.objects.create(user=user, course_id=course_id, quiz=quiz)
+			Completion.objects.create(user=user, course_id=course_id, quiz=quiz)
 			if answer.is_correct == True:
 				earned_points += question.points
 				attempter.score += earned_points

@@ -5,7 +5,7 @@ from module.forms import NewModuleForm
 from module.models import Module
 from classroom.models import Course
 
-#from completion.models import Completion
+from completion.models import Completion
 
 # Create your views here.
 def NewModule(request, course_id):
@@ -37,9 +37,9 @@ def CourseModules(request, course_id):
 	user = request.user
 	course = get_object_or_404(Course, id=course_id)
 
-	#page_completions = Completion.objects.filter(user=user, course=course).values_list('page__pk', flat=True)
-	#quiz_completions = Completion.objects.filter(user=user, course=course).values_list('quiz__pk', flat=True)
-	#assignment_completions = Completion.objects.filter(user=user, course=course).values_list('assignment__pk', flat=True)
+	page_completions = Completion.objects.filter(user=user, course=course).values_list('page__pk', flat=True)
+	quiz_completions = Completion.objects.filter(user=user, course=course).values_list('quiz__pk', flat=True)
+	assignment_completions = Completion.objects.filter(user=user, course=course).values_list('assignment__pk', flat=True)
 
 	teacher_mode = False
 	if user == course.user:
@@ -48,9 +48,9 @@ def CourseModules(request, course_id):
 	context = {
 		'teacher_mode': teacher_mode,
 		'course': course,
-	#	'page_completions': page_completions,
-	#	'quiz_completions': quiz_completions,
-	#	'assignment_completions': assignment_completions,
+		'page_completions': page_completions,
+		'quiz_completions': quiz_completions,
+		'assignment_completions': assignment_completions,
 	}
 
 	return render(request, 'module/modules.html', context)

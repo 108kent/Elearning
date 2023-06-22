@@ -7,7 +7,7 @@ from assignment.models import AssignmentFileContent, Assignment, Submission
 
 from module.models import Module
 from classroom.models import Course, Grade
-#from completion.models import Completion
+from completion.models import Completion
 
 # Create your views here.
 def NewAssignment(request, course_id, module_id):
@@ -73,7 +73,7 @@ def NewSubmission(request, course_id, module_id, assignment_id):
 			comment = form.cleaned_data.get('comment')
 			s = Submission.objects.create(file=file, comment=comment, user=user, assignment=assignment)
 			Grade.objects.create(course=course, submission=s)
-	#		Completion.objects.create(user=user, course=course, assignment=assignment)
+			Completion.objects.create(user=user, course=course, assignment=assignment)
 			return redirect('modules', course_id=course_id)
 	else:
 		form = NewSubmissionForm()
