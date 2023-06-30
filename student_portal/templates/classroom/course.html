@@ -27,9 +27,6 @@
 
 <div class="col s9">
 
-  {% if teacher_mode == True %}
-    <a class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a>
-  {% endif %}
 
   <div class="section">
     <h4>Recent announcements</h4>
@@ -42,6 +39,10 @@
     {{ course.syllabus | safe }}
 
   </div>
+
+      {% if user.is_staff == True %}
+      <a href="{% url 'edit-course' course.id %}" class="btn">修正する</a>
+      {% endif %}
   
 </div>
 

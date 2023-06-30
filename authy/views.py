@@ -31,37 +31,6 @@ def SideNavInfo(request):
 	
 	return {'nav_profile': nav_profile}
 
-#これは新しく作ったが、反映されてくれない
-
-#def ProfileHTML(request, username):
-#	user = get_object_or_404(User, username=username)
-#	profile = Profile.objects.get(user=user)
-#	user_basic_info = User.objects.get(user=user)
-	
-#	context = {
-#	'profile': profile,
-#	"user_basic_info":user_basic_info,
-#	}
-	
-#	return render(request, 'profile.html', context)
-
-
-#def UserProfile(request, username):
-#	user = get_object_or_404(User, username=username)
-#	profile = Profile.objects.get(user=user)
-
-#	courses = Course.objects.filter(enrolled=user)
-#	template = loader.get_template('profile.html')
-#	location = profile.location
-
-#	context = {
-#		'profile':profile,
-#		'courses': courses,
-#		"location":location,
-
-#	}
-
-#	return HttpResponse(template.render(context, request))
 	
 def UserProfile(request, username):
     user = get_object_or_404(User, username=username)
@@ -77,24 +46,46 @@ def UserProfile(request, username):
 
     return render(request, 'profile.html', context)
 
-
 def Signup(request):
-	if request.method == 'POST':
-		form = SignupForm(request.POST)
-		if form.is_valid():
-			username = form.cleaned_data.get('username')
-			email = form.cleaned_data.get('email')
-			password = form.cleaned_data.get('password')
-			User.objects.create_user(username=username, email=email, password=password)
-			return redirect('edit-profile')
-	else:
-		form = SignupForm()
-	
-	context = {
-		'form':form,
-	}
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            is_staff = form.cleaned_data.get('staff')  # staffの値を取得
 
-	return render(request, 'registration/signup.html', context)
+            user = User.objects.create_user(username=username, email=email, password=password)
+            user.is_staff = is_staff  # is_staffを設定
+            user.save()
+
+            return redirect('edit-profile')
+    else:
+        form = SignupForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'registration/signup.html', context)
+
+#def Signup(request):
+#	if request.method == 'POST':
+#		form = SignupForm(request.POST)
+#		if form.is_valid():
+#			username = form.cleaned_data.get('username')
+#			email = form.cleaned_data.get('email')
+#			password = form.cleaned_data.get('password')
+#			User.objects.create_user(username=username, email=email, password=password)
+#			return redirect('edit-profile')
+#	else:
+#		form = SignupForm()
+#	
+#	context = {
+#		'form':form,
+#	}
+#
+#	return render(request, 'registration/signup.html', context)
 
 
 @login_required

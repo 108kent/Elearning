@@ -8,3 +8,5 @@ class NewModuleForm(forms.ModelForm):
 	class Meta:
 		model = Module
 		fields = ('title', 'hours',)
+		
+		

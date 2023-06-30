@@ -6,7 +6,7 @@ from django.http import HttpResponseForbidden
 
 from classroom.models import Course, Category, Grade
 
-from classroom.forms import NewCourseForm
+from classroom.forms import NewCourseForm, EditCourseForm
 
 def index(request):
 	user = request.user
@@ -99,10 +99,11 @@ def EditCourse(request, course_id):
 
 	if user != course.user:
 		return HttpResponseForbidden()
+	#この文言によって、コースの作成者（User）以外はこのページをいじる権利が無い
 
 	else:
 		if request.method == 'POST':
-			form = NewCourseForm(request.POST, request.FILES, instance=course)
+			form = EditCourseForm(request.POST, request.FILES, instance=course)
 			if form.is_valid():
 				course.picture = form.cleaned_data.get('picture')
 				course.title = form.cleaned_data.get('title')
@@ -126,11 +127,12 @@ def MyCourses(request):
 	courses = Course.objects.filter(user=user)
 
 	context = {
-		'courses': courses
+		'courses': courses,
 	}
 
 	return render(request, 'classroom/mycourses.html', context)
 	
+
 def Submissions(request, course_id):
 	user = request.user
 	course = get_object_or_404(Course, id=course_id)

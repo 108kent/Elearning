@@ -19,6 +19,9 @@
       <span class="card-title activator grey-text text-darken-4"><b>{{ course.title }}</b><i class="material-icons right">more_vert</i></span>
       <p class="title"><b>{{ course.enrolled.count }}</b>受講者数</p>
       <a href="{% url 'enroll' course.id %}" class="btn">受講する</a>
+      {% if user.is_staff == True %}
+      <a href="{% url 'enroll' course.id %}" class="btn">修正する</a>
+      {% endif %}
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">About<i class="material-icons right">close</i></span>
@@ -28,5 +31,9 @@
 </div>
 {% endfor %}
 </div>
+
+{% if user.is_staff == True %}
+<a href="{% url 'newcourse' %}" class="btn">講義を追加する</a>
+{% endif %}
 
 {% endblock %}

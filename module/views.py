@@ -2,10 +2,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseForbidden
 
 from module.forms import NewModuleForm
-from module.models import Module
+
 from classroom.models import Course
 
 from completion.models import Completion
+
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def NewModule(request, course_id):
@@ -54,3 +56,4 @@ def CourseModules(request, course_id):
 	}
 
 	return render(request, 'module/modules.html', context)
+	

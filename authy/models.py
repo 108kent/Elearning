@@ -35,7 +35,6 @@ class Profile(models.Model):
 	profile_info = models.TextField(max_length=150, null=True, blank=True)
 	created = models.DateField(auto_now_add=True)
 	picture = models.ImageField(upload_to=user_directory_path_profile, blank=True, null=True, verbose_name='Picture')
-	banner = models.ImageField(upload_to=user_directory_path_banner, blank=True, null=True, verbose_name='Banner')
 
 	def save(self, *args, **kwargs):
 		super().save(*args, **kwargs)
