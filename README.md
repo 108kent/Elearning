@@ -10,11 +10,11 @@ postgres –version　
 amazon-linux-extras
 
 ## 3 install newer virsion
-$ sudo amazon-linux-extras install postgresql11
-$ sudo yum install postgresql-server
-$ sudo yum install postgresql-devel
-$ sudo su - 
-  #postgresql-setup initdb
-  #systemctl start postgresql.service
-  #exit
+$ sudo amazon-linux-extras install postgresql11  
+$ sudo yum install postgresql-server  
+$ sudo yum install postgresql-devel  
+$ sudo su -   
+  #postgresql-setup initdb  
+  #systemctl start postgresql.service  
+  #exit  
 
