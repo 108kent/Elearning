@@ -3,10 +3,10 @@
 
 
 
-##1 check your PostgreSQL version
+#1 check your PostgreSQL version
 postgres –version　
 
-##2 if the version is older than 9, pls update 
+#2 if the version is older than 9, pls update 
 amazon-linux-extras
 
-##3 
+#3 
