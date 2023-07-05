@@ -1,7 +1,6 @@
 # Elearning
-大学、インターン向けElearningサイト
 
-
+# how to install PostgreSQL
 
 ## 1 check your PostgreSQL version
 postgres –version　
@@ -18,3 +17,5 @@ $ sudo su -
   #systemctl start postgresql.service  
   #exit  
 
+## 4 edit conf file
+https://gist.github.com/ericpkatz/19614dd090e6408f3eef746ddc49e6d6
