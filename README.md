@@ -18,4 +18,9 @@ $ sudo su -
   #exit  
 
 ## 4 edit conf file
-https://gist.github.com/ericpkatz/19614dd090e6408f3eef746ddc49e6d6
+basically you can follow that Youtube video↓
+
+https://gist.github.com/ericpkatz/19614dd090e6408f3eef746ddc49e6d6  
+https://www.youtube.com/watch?v=elQvh6bNv3M
+* Unlike that youtube video, you cannot not find "vim /var/lib/pgsql9/data/pg_hba.conf", when you updated. You can instead edit "vim /var/lib/pgsql/data/pg_hba.conf"
+* you don't need to modify Use md5 auth
